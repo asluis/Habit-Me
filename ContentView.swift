@@ -37,11 +37,14 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView{
-            List(habits.list){ habit in
-                NavigationLink(destination: Text("Sample Text")){
-                    Text(habit.name)
-                }
+            List{
+                ForEach(habits.list, id: \.self){ habit in
+                    NavigationLink(destination: Text("Sample Text")){
+                        Text(habit.name)
+                    }
+                }.onDelete(perform: deleteSet)
             }
+            
             .navigationBarTitle("Habit Me")
             .navigationBarItems(trailing:
                 Button(action: {
@@ -53,6 +56,11 @@ struct ContentView: View {
             )
         }
     }
+    
+    func deleteSet(at offSet:IndexSet){
+        habits.list.remove(atOffsets: offSet)
+    }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {

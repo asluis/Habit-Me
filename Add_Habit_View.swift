@@ -30,7 +30,10 @@ struct Add_Habit_View: View {
             .navigationBarTitle("Enter Habit Details")
             .navigationBarItems(leading:
                 Button(action: {
-                    print("TODO")
+                    if !name.isEmpty {
+                        habits.list.append(Habit(count: 0, name: self.name, desc: desc.isEmpty ? nil : self.desc))
+                    }
+                    presentationMode.wrappedValue.dismiss()
                 }){
                      Image(systemName: "arrowshape.turn.up.backward")
                         .padding()
