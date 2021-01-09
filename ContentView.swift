@@ -46,7 +46,7 @@ struct ContentView: View {
             }
             
             .navigationBarTitle("Habit Me")
-            .navigationBarItems(trailing:
+            .navigationBarItems(leading: EditButton(), trailing:
                 Button(action: {
                     print("TO DO")
                 }){
