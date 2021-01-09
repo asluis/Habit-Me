@@ -32,12 +32,26 @@ Part B:
 import SwiftUI
 
 struct ContentView: View {
+    
+    @ObservedObject var habits = Habits()
+    
     var body: some View {
         NavigationView{
-            Text("Hello, world!")
-                .padding()
+            List(habits.list){ habit in
+                NavigationLink(destination: Text("Sample Text")){
+                    Text(habit.name)
+                }
+            }
+            .navigationBarTitle("Habit Me")
+            .navigationBarItems(trailing:
+                Button(action: {
+                    print("TO DO")
+                }){
+                    Image(systemName: "plus")
+                        .padding()
+                }
+            )
         }
-        
     }
 }
 

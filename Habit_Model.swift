@@ -10,7 +10,7 @@ import Foundation
 
 class Habits: ObservableObject{
     
-    @Published var list = [Habit]()
+    @Published var list:[Habit] = [Habit]()
     
     
 }
