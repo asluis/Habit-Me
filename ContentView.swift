@@ -33,6 +33,8 @@ import SwiftUI
 
 struct ContentView: View {
     
+    @State var showingSheet = false
+    
     @ObservedObject var habits = Habits()
     
     var body: some View {
@@ -42,7 +44,7 @@ struct ContentView: View {
                     NavigationLink(destination: Text("Sample Text")){
                         HStack{
                             Text(habit.name)
-                                .font(.largeTitle)
+                                .font(.headline)
                             
                             Spacer()
                             
@@ -54,11 +56,13 @@ struct ContentView: View {
                     }
                 }.onDelete(perform: deleteSet)
             }
-            
+            .sheet(isPresented: $showingSheet){
+                Add_Habit_View(habits: self.habits)
+            }
             .navigationBarTitle("Habit Me")
             .navigationBarItems(leading: EditButton(), trailing:
                 Button(action: {
-                    print("TO DO")
+                    self.showingSheet = true
                 }){
                     Image(systemName: "plus")
                         .padding()

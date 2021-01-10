@@ -10,7 +10,15 @@ import Foundation
 
 class Habits: ObservableObject{
     
-    @Published var list:[Habit]
+    @Published var list:[Habit]{
+        didSet{
+            let encoder = JSONEncoder()
+            if let encoded = try? encoder.encode(list) {
+                UserDefaults.standard.set(encoded, forKey: "Habits")
+            }
+            print("Saved")
+        }
+    }
     
     
     init(){
@@ -21,7 +29,8 @@ class Habits: ObservableObject{
             if let decoded = try? decoder.decode([Habit].self, from: data) {
                     
                 list = decoded
-                    
+                print("Accessed data")
+                return
             }
         }
         list = []
