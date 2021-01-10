@@ -41,14 +41,12 @@ class Habits: ObservableObject{
 
 
 struct Habit: Codable, Identifiable, Hashable{
-    var count = 0
     var name = ""
     var description:String? // User might not want a description
     
     let id = UUID() // Makes habit unique
     
-    init(count:Int, name:String, desc:String?){
-        self.count = count
+    init(name:String, desc:String?){
         self.name = name
         self.description = desc
     }

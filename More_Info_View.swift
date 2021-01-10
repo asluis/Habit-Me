@@ -11,46 +11,42 @@ struct More_Info_View: View {
     
     @State var habit:Habit
     
-    
     var body: some View {
-        VStack{
-            graphic(num: habit.count)
-            
-            
-            Text(habit.description ?? "")
-                .padding(.top)
+        NavigationView{
+            VStack{
+                
+                
+                Text(habit.description ?? "")
+                    .font(.headline)
+                    .padding()
+                Button(action: {
+                }){
+                    ZStack{
+                        myCircle(widthPercentage: 0.9)
+                            .stroke(/*@START_MENU_TOKEN@*/Color.blue/*@END_MENU_TOKEN@*/, lineWidth: 10)
+                        myCircle(widthPercentage: 0.75)
+                    }
+                }
+            }
+            .navigationBarTitle("\(habit.name)")
         }
     }
 }
 
 
-struct graphic: View{
+struct myCircle: Shape{
     
-    let num:Int
+    var widthPercentage:CGFloat
     
-    var body: some View{
-        GeometryReader{ geo in
-            ZStack{
-                Circle()
-                    .strokeBorder(Color.blue, lineWidth: 10)
-                    .frame(width: geo.size.width)
-                
-                Circle()
-                    .fill(Color.blue)
-                    .frame(width: geo.size.width * 0.9)
-                
-                
-                Text("\(num)")
-                    .foregroundColor(.white)
-                    .font(.system(size: 75))
-            }
-        }
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+        path.addArc(center: CGPoint(x: rect.midX, y: rect.midY), radius: CGFloat(rect.midX * widthPercentage), startAngle: Angle(degrees: 0.0), endAngle: Angle(degrees: 360), clockwise: true)
+        return path
     }
-    
 }
 
 struct More_Info_View_Previews: PreviewProvider {
     static var previews: some View {
-        More_Info_View(habit: Habit(count: 10, name: "Running", desc: "Large description"))
+        More_Info_View(habit: Habit(name: "Running", desc: "Large descriptionassbasjajsabsjsbjbjjabsjabjajsab"))
     }
 }

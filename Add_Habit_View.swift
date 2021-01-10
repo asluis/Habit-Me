@@ -31,7 +31,7 @@ struct Add_Habit_View: View {
             .navigationBarItems(leading:
                 Button(action: {
                     if !name.isEmpty {
-                        habits.list.append(Habit(count: 0, name: self.name, desc: desc.isEmpty ? nil : self.desc))
+                        habits.list.append(Habit(name: self.name, desc: desc.isEmpty ? nil : self.desc))
                     }
                     presentationMode.wrappedValue.dismiss()
                 }){
