@@ -40,7 +40,17 @@ struct ContentView: View {
             List{
                 ForEach(habits.list, id: \.self){ habit in
                     NavigationLink(destination: Text("Sample Text")){
-                        Text(habit.name)
+                        HStack{
+                            Text(habit.name)
+                                .font(.largeTitle)
+                            
+                            Spacer()
+                            
+                            Text("\(habit.count)")
+                                .font(.headline)
+                            
+                        }
+                        
                     }
                 }.onDelete(perform: deleteSet)
             }

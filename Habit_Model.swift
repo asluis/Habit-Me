@@ -10,7 +10,22 @@ import Foundation
 
 class Habits: ObservableObject{
     
-    @Published var list:[Habit] = [Habit]()
+    @Published var list:[Habit]
+    
+    
+    init(){
+        let decoder = JSONDecoder()
+            
+        if let data = UserDefaults.standard.data(forKey: "Habits") {
+                
+            if let decoded = try? decoder.decode([Habit].self, from: data) {
+                    
+                list = decoded
+                    
+            }
+        }
+        list = []
+    }
     
     
 }
