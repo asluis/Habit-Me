@@ -11,7 +11,6 @@ import SwiftUI
 struct ContentView: View {
     
     @State var showingSheet = false
-    
     @ObservedObject var habits = Habits()
     
     var body: some View {
